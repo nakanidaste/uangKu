@@ -44,9 +44,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 20,
-    height: 20,
-    tintColor: COLORS.lightblue,
+    width: 25,
+    height: 25,
   },
   h2: {
     color: COLORS.primary,

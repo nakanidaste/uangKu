@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import { icons, COLORS, SIZES, FONTS } from '../constants';
+import data from '../constants/data';
 
-const CategoryHeaderSection = ({ mode }) => {
+const CategoryHeaderSection = ({ mode, toggle }) => {
   return (
     <View
       style={{
@@ -13,7 +14,9 @@ const CategoryHeaderSection = ({ mode }) => {
       }}>
       <View>
         <Text style={{ color: COLORS.primary, ...FONTS.h3 }}>CATEGORIES</Text>
-        <Text style={{ color: COLORS.darkgray, ...FONTS.body4 }}>2 Total</Text>
+        <Text style={{ color: COLORS.darkgray, ...FONTS.body4 }}>
+          {data.length} Total
+        </Text>
       </View>
 
       <View style={{ flexDirection: 'row' }}>
@@ -25,11 +28,16 @@ const CategoryHeaderSection = ({ mode }) => {
             width: 50,
             backgroundColor: mode === 'chart' ? COLORS.blue : null,
             borderRadius: 25,
-          }}>
+          }}
+          onPress={() => toggle('chart')}>
           <Image
             source={icons.piechart}
             resizeMode="contain"
-            style={{ width: 20, height: 20 }}
+            style={{
+              width: 20,
+              height: 20,
+              tintColor: mode === 'chart' ? null : COLORS.darkgray,
+            }}
           />
         </TouchableOpacity>
 
@@ -41,11 +49,16 @@ const CategoryHeaderSection = ({ mode }) => {
             width: 50,
             backgroundColor: mode === 'list' ? COLORS.blue : null,
             borderRadius: 25,
-          }}>
+          }}
+          onPress={() => toggle('list')}>
           <Image
             source={icons.menu}
             resizeMode="contain"
-            style={{ width: 20, height: 20 }}
+            style={{
+              width: 20,
+              height: 20,
+              tintColor: mode === 'list' ? null : COLORS.darkgray,
+            }}
           />
         </TouchableOpacity>
       </View>

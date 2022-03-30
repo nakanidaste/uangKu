@@ -5554,6 +5554,11 @@ react-native-screens@^3.13.1:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-virtualized-view@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-virtualized-view/-/react-native-virtualized-view-0.1.5.tgz#d908b6adc53e6aedac9c8106767067d525a08ac0"
+  integrity sha512-GYKck4rYPpG0dg3WSv6aPPGfyArRMT98VTs6jVhD7C8MlSOsvfNuWKVjSrQmUMSdjpjLDpRc5LgJW8u1VDi44w==
+
 react-native@0.67.4:
   version "0.67.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.67.4.tgz#57a1503daa81f66a61f521ff67b259f126d87f9c"
