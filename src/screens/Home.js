@@ -6,6 +6,7 @@ import {
   Header,
   CategoryHeaderSection,
   CategoryList,
+  Chart,
 } from '../components';
 
 const Home = () => {
@@ -23,7 +24,9 @@ const Home = () => {
         choice={setSelectedCategory}
         setToggle={setShowMoreToggle}
         toggle={showMoreToggle}
+        category={selectedCategory}
       />
+      <Chart mode={viewMode} />
     </View>
   );
 };

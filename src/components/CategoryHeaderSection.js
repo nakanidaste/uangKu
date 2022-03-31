@@ -8,7 +8,8 @@ const CategoryHeaderSection = ({ mode, toggle }) => {
     <View
       style={{
         flexDirection: 'row',
-        padding: SIZES.padding,
+        paddingHorizontal: SIZES.padding,
+        paddingVertical: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
       }}>

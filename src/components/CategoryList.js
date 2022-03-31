@@ -6,15 +6,19 @@ import {
   TouchableOpacity,
   Image,
   Animated,
+  ScrollView,
 } from 'react-native';
 import React, { useRef } from 'react';
 import data from '../constants/data';
 import { COLORS, SIZES, FONTS, icons } from '../constants';
 
-const CategoryList = ({ mode, choice, setToggle, toggle }) => {
+const CategoryList = ({ mode, choice, setToggle, toggle, category }) => {
   const categoryListHeightAnimationValue = useRef(
     new Animated.Value(115),
   ).current;
+
+  const allExpenses = category ? category.expenses : [];
+  const incomingExpenses = allExpenses.filter(a => a.status === 'P');
 
   const renderItem = ({ item }) => {
     return (
@@ -49,8 +53,85 @@ const CategoryList = ({ mode, choice, setToggle, toggle }) => {
     );
   };
 
+  const itemRender = ({ item, index }) => (
+    <View
+      style={{
+        width: 300,
+        marginRight: SIZES.padding,
+        marginLeft: index === 0 ? SIZES.padding : 0,
+        marginTop: 10,
+        marginBottom: SIZES.padding,
+        borderRadius: SIZES.radius,
+        backgroundColor: COLORS.white,
+        ...styles.shadow,
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingHorizontal: SIZES.padding,
+          paddingVertical: 10,
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            height: 50,
+            width: 50,
+            borderRadius: 25,
+            backgroundColor: COLORS.lightgray,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginRight: SIZES.base,
+          }}>
+          <Image source={category.icon} style={{ width: 30, height: 30 }} />
+        </View>
+        <Text style={{ ...FONTS.h3, color: category.color }}>
+          {category.name}
+        </Text>
+      </View>
+
+      <View style={{ paddingHorizontal: SIZES.padding }}>
+        <Text style={{ ...FONTS.h2 }}>{item.title}</Text>
+        <Text
+          style={{ ...FONTS.body3, flexWrap: 'wrap', color: COLORS.darkgray }}>
+          {item.description}
+        </Text>
+
+        <Text style={{ marginVertical: 10, ...FONTS.h4 }}>Location</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Image
+            source={icons.pin}
+            style={{ width: 20, height: 20, marginRight: 5 }}
+          />
+          <Text
+            style={{
+              marginBottom: SIZES.base,
+              color: COLORS.darkgray,
+              ...FONTS.body4,
+            }}>
+            {item.location}
+          </Text>
+        </View>
+      </View>
+
+      <View
+        style={{
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderBottomEndRadius: SIZES.radius,
+          borderBottomStartRadius: SIZES.radius,
+          backgroundColor: category.color,
+        }}>
+        <Text style={{ color: COLORS.white, ...FONTS.body3 }}>
+          {' '}
+          CONFIRM {item.total.toFixed(2)} USD
+        </Text>
+      </View>
+    </View>
+  );
+
   return (
-    <View>
+    <ScrollView>
       {mode === 'list' && (
         <View>
           {/* function 1*/}
@@ -98,9 +179,48 @@ const CategoryList = ({ mode, choice, setToggle, toggle }) => {
             </TouchableOpacity>
           </View>
           {/* function2 */}
+          <View>
+            <View
+              style={{
+                paddingHorizontal: SIZES.padding,
+                paddingVertical: 10,
+                //backgroundColor: COLORS.blue,
+              }}>
+              <Text style={{ ...FONTS.h3, color: COLORS.primary }}>
+                INCOMING EXPENSES
+              </Text>
+              <Text style={{ ...FONTS.body4, color: COLORS.darkgray }}>
+                12 Total
+              </Text>
+            </View>
+            {incomingExpenses.length > 0 && (
+              <>
+                <FlatList
+                  data={incomingExpenses}
+                  renderItem={itemRender}
+                  keyExtractor={item => `${item.id}`}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
+            )}
+            {incomingExpenses.length === 0 && (
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 300,
+                  //backgroundColor: COLORS.blue,
+                }}>
+                <Text style={{ color: COLORS.primary, ...FONTS.h3 }}>
+                  No Record
+                </Text>
+              </View>
+            )}
+          </View>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

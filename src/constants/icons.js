@@ -11,6 +11,7 @@ export const sport = require('../assets/icons/sports.png');
 export const clothes = require('../assets/icons/clothes.png');
 export const darrow = require('../assets/icons/darrow.png');
 export const uarrow = require('../assets/icons/uarrow.png');
+export const pin = require('../assets/icons/pin.png');
 
 export default {
   arrow,
@@ -26,4 +27,5 @@ export default {
   clothes,
   darrow,
   uarrow,
+  pin,
 };

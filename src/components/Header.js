@@ -32,7 +32,7 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding,
+    //paddingVertical: SIZES.padding,
     backgroundColor: COLORS.white,
   },
   iconWrapper: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   calendar: {
     flexDirection: 'row',
-    marginTop: SIZES.padding,
+    marginVertical: 10,
     alignItems: 'center',
   },
   infoWrapper: {
