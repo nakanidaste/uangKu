@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import { COLORS } from '../constants';
 import {
@@ -26,7 +26,11 @@ const Home = () => {
         toggle={showMoreToggle}
         category={selectedCategory}
       />
-      <Chart mode={viewMode} />
+      <Chart
+        mode={viewMode}
+        choice={setSelectedCategory}
+        category={selectedCategory}
+      />
     </View>
   );
 };
