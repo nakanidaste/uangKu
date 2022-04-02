@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { MenuProvider } from 'react-native-popup-menu';
 import Router from './navigation/Router';
 
 const theme = {
@@ -13,7 +14,9 @@ const theme = {
 const App = () => {
   return (
     <NavigationContainer theme={theme}>
-      <Router />
+      <MenuProvider>
+        <Router />
+      </MenuProvider>
     </NavigationContainer>
   );
 };

@@ -1,6 +1,20 @@
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import React from 'react';
 import { icons, COLORS, SIZES } from '../constants';
+import {
+  Menu,
+  MenuOption,
+  MenuOptions,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
+const More = () => {
+  return (
+    <TouchableOpacity style={styles.more} onPress={() => console.log('More')}>
+      <Image source={icons.more} style={styles.icon} />
+    </TouchableOpacity>
+  );
+};
 
 const NavBar = () => {
   return (
@@ -11,9 +25,18 @@ const NavBar = () => {
         <Image source={icons.arrow} style={styles.icon} />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.more} onPress={() => console.log('More')}>
-        <Image source={icons.more} style={styles.icon} />
-      </TouchableOpacity>
+      <Menu>
+        <MenuTrigger
+          customStyles={{
+            TriggerTouchableComponent: More,
+          }}
+        />
+        <MenuOptions>
+          <MenuOption text="Add Income" />
+          <MenuOption text="Add Expanse" />
+          <MenuOption text="About" />
+        </MenuOptions>
+      </Menu>
     </View>
   );
 };
