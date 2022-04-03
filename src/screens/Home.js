@@ -9,14 +9,14 @@ import {
   Chart,
 } from '../components';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [viewMode, setViewMode] = useState('chart');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showMoreToggle, setShowMoreToggle] = useState(false);
 
   return (
     <View style={styles.container}>
-      <NavBar />
+      <NavBar navigation={navigation} more={true} />
       <Header />
       <CategoryHeaderSection mode={viewMode} toggle={setViewMode} />
       <CategoryList

@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import React from 'react';
-import { icons, COLORS, SIZES } from '../constants';
+import { icons, COLORS, SIZES, FONTS } from '../constants';
 import {
   Menu,
   MenuOption,
@@ -8,35 +8,37 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 
-const More = () => {
+const NavBar = ({ navigation, more }) => {
+  if (more) {
+    return (
+      <View style={styles.container(more)}>
+        <Menu>
+          <MenuTrigger>
+            <Image source={icons.more} style={styles.icon} />
+          </MenuTrigger>
+          <MenuOptions
+            customStyles={{
+              optionWrapper: { padding: 10, marginLeft: 5 },
+              optionText: styles.text,
+            }}>
+            <MenuOption
+              text="Add Income"
+              onSelect={() => navigation.navigate('AddIncome')}
+            />
+            <MenuOption text="Add Expanse" />
+            <MenuOption text="About" />
+          </MenuOptions>
+        </Menu>
+      </View>
+    );
+  }
   return (
-    <TouchableOpacity style={styles.more} onPress={() => console.log('More')}>
-      <Image source={icons.more} style={styles.icon} />
-    </TouchableOpacity>
-  );
-};
-
-const NavBar = () => {
-  return (
-    <View style={styles.container}>
+    <View style={styles.container(more)}>
       <TouchableOpacity
         style={styles.arrow}
-        onPress={() => console.log('Back')}>
+        onPress={() => navigation.goBack()}>
         <Image source={icons.arrow} style={styles.icon} />
       </TouchableOpacity>
-
-      <Menu>
-        <MenuTrigger
-          customStyles={{
-            TriggerTouchableComponent: More,
-          }}
-        />
-        <MenuOptions>
-          <MenuOption text="Add Income" />
-          <MenuOption text="Add Expanse" />
-          <MenuOption text="About" />
-        </MenuOptions>
-      </Menu>
     </View>
   );
 };
@@ -44,14 +46,14 @@ const NavBar = () => {
 export default NavBar;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
+  container: more => ({
+    flexDirection: more ? 'column' : 'row',
     height: 50,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: more ? 'center' : 'space-between',
+    alignItems: more ? 'flex-end' : 'center',
     paddingHorizontal: SIZES.padding,
     backgroundColor: COLORS.white,
-  },
+  }),
   icon: {
     width: 20,
     height: 20,
@@ -65,5 +67,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 50,
     alignItems: 'flex-end',
+  },
+  text: {
+    color: COLORS.primary,
+    ...FONTS.body3,
   },
 });
