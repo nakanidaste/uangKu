@@ -5,6 +5,7 @@ import CategoryList from './CategoryList';
 import Chart from './Chart';
 import Balance from './Balance';
 import IncomeExpenses from './IncomeExpenses';
+import AddTransaction from './AddTransaction';
 
 export {
   NavBar,
@@ -14,4 +15,5 @@ export {
   Chart,
   Balance,
   IncomeExpenses,
+  AddTransaction,
 };

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { icons, COLORS, SIZES, FONTS } from '../constants';
+import { COLORS, SIZES, FONTS } from '../constants';
 
 const IncomeExpenses = () => {
   return (
